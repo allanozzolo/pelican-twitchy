@@ -34,13 +34,14 @@
         <link rel="stylesheet" href="{{ SITEURL }}/theme/css/bootstrap.min.css" type="text/css"/>
     {% endif %}
     <link href="{{ SITEURL }}/theme/css/font-awesome.min.css" rel="stylesheet">
-    
+
     <link href="{{ SITEURL }}/theme/css/pygments/{{ PYGMENTS_STYLE|default('native') }}.css" rel="stylesheet">
-    
+
     {% if TYPOGRIFY %}
         <link href="{{ SITEURL }}/theme/css/typogrify.css" rel="stylesheet">
     {% endif %}
     <link href="/theme/css/pelican-twitchy.css" rel="stylesheet">
+    <link href="/theme/css/imgs.css" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -48,7 +49,7 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-    
+
     <!-- Feeds -->
     {% if FEED_ALL_ATOM %}
         <link href="{{ SITEURL }}/{{ FEED_ALL_ATOM }}" type="application/atom+xml" rel="alternate"
@@ -67,7 +68,7 @@
                 {{ nav_small_li(SITEURL, SITENAME, '<span class="glyphicon glyphicon-home"></span>') }}
                 <li class="nav-divider"></li>
                 {{ nav_small_li(SITEURL + '/' + ARCHIVES_URL | default('archives.html'), 'Recent Articles', '<span class="glyphicon glyphicon-th-list"></span>') }}
-                
+
                 {% if SHARE %}
                 <li class="nav-divider"></li>
                 <li id="share-small">
@@ -228,7 +229,7 @@
                     </a>
                 </li>
                 {% endfor %}
-                
+
                 {% if DISPLAY_PAGES_ON_MENU %}
                 <li class="nav-divider"></li>
                 <li>
@@ -248,7 +249,7 @@
                     {% endfor %}
                 </ul></li>
                 {% endif %}
-                
+
                 {% if DISPLAY_CATEGORIES_ON_MENU %}
                 <li class="nav-divider"></li>
                 <li>
@@ -269,7 +270,7 @@
                     {% endfor %}
                 </ul></li>
                 {% endif %}
-                
+
                 {% if DISPLAY_TAGS_ON_MENU %}
                     {% if DISPLAY_TAGS_INLINE %}
                         {% set tags = tag_cloud | sort(attribute='0') %}
