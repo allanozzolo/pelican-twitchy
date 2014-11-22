@@ -94,6 +94,27 @@
                     </li>
                 </ul></li>
                 {% endif %}
+                {% if LINKS %}
+                <li class="nav-divider"></li>
+                <li>
+                    <a data-toggle="collapse" data-parent="#accordion-small" href="#collapse-blogroll-small" title="BlogRoll" class="collapsed">
+                        <i class="fa fa-users padding-small"></i>
+                    </a>
+                </li>
+                <li class="panel anti-panel"><ul id="collapse-blogroll-small" class="collapse {% block collapse_blogroll_small %}{% endblock %}">
+                {% for name, link in LINKS|sort(attribute='0') %}
+                    {% set name_sanitized = name|lower|replace('+','-plus')|replace(' ','-') %}
+                    {% if name_sanitized in ['flickr', 'spotify', 'stack-overflow'] %}
+                        {% set iconattributes = 'fa fa-' ~ name_sanitized ~ ' fa-lg' %}
+                    {% else %}
+                        {% set iconattributes = 'fa fa-' ~ name_sanitized ~ '-square fa-lg' %}
+                    {% endif %}
+                    <li>
+                        <a href="{{ link }}" title="{{name}}"><i class="{{ iconattributes }} padding-small"></i></a>
+                    </li>
+                {% endfor %}
+                </ul></li>
+                {% endif %}
                 {% if SOCIAL %}
                 <li class="nav-divider"></li>
                 <li>
@@ -194,6 +215,31 @@
                     </li>
                 </ul></li>
                 {% endif %}
+                {% if LINKS %}
+                <li class="nav-divider"></li>
+                <li>
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse-blogroll">
+                        <i class="fa fa-users padding-small"></i>
+                        BlogRoll
+                    </a>
+                </li>
+                <li class="panel anti-panel"><ul id="collapse-blogroll" class="sidebar_submenu collapse {% block collapse_blogroll %}{% endblock %}">
+                    {% for name, link in LINKS|sort(attribute='0') %}
+                    {% set name_sanitized = name|lower|replace('+','-plus')|replace(' ','-') %}
+                    {% if name_sanitized in ['flickr', 'spotify', 'stack-overflow'] %}
+                        {% set iconattributes = 'fa fa-' ~ name_sanitized ~ ' fa-lg' %}
+                    {% else %}
+                        {% set iconattributes = 'fa fa-' ~ name_sanitized ~ '-square fa-lg' %}
+                    {% endif %}
+                    <li>
+                        <a href="{{ link }}" title="{{name|striptags|trim}}">
+                            <i class="{{ iconattributes }} padding-small"></i>
+                            {{ name }}
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul></li>
+                {% endif %}
                 {% if SOCIAL %}
                 <li class="nav-divider"></li>
                 <li>
@@ -203,7 +249,7 @@
                     </a>
                 </li>
                 <li class="panel anti-panel"><ul id="collapse-social" class="sidebar_submenu collapse {% block collapse_social %}{% endblock %}">
-                    {% for name, link in SOCIAL|sort(attribute='0') %}
+                    {% for name, link in LINKS|sort(attribute='0') %}
                     {% set name_sanitized = name|lower|replace('+','-plus')|replace(' ','-') %}
                     {% if name_sanitized in ['flickr', 'spotify', 'stack-overflow'] %}
                         {% set iconattributes = 'fa fa-' ~ name_sanitized ~ ' fa-lg' %}
